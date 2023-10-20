@@ -1,26 +1,33 @@
 # Minh Tri Doan Vo
 # Create a banner header to format output display
 
-fullName    = input("Enter your name: ")
-date        = input("Date: ")
-progName    = input("Program: ")
-descript    = input("Description: ")
+# declared global variables
+FULL_NAME   = ""
+DATE        = ""
+PROG_NAME   = ""
+DESCRIPT    = ""
 # constant for how many stars will display in displayStarLine()
-starLine    = 80
+STAR_LINE   = 80
 
+# use global to bring in the global variable from above
 def collectInputs():
-    print("\tCoder\t:", fullName)
-    print("\tDate\t:", date)
-    print("\tProgram\t:", progName)
-    print("\tDescrip\t:", descript)
+    global FULL_NAME, DATE, PROG_NAME, DESCRIPT
+    FULL_NAME   = input("Enter your name: ")
+    DATE        = input("Date: ")
+    PROG_NAME   = input("Program: ")
+    DESCRIPT    = input("Description: ")
 
+# print user the variable instead of calling for the function
 def displayBanner():
     displayStarLine()
-    collectInputs()
+    print("\tCoder\t:", FULL_NAME)
+    print("\tDate\t:", DATE)
+    print("\tProgram\t:", PROG_NAME)
+    print("\tDescrip\t:", DESCRIPT)
     displayStarLine()
 
 def displayStarLine():
-    print("*" * starLine)
+    print("*" * STAR_LINE)
 
 def displaySectHeaders():
     print()
@@ -41,15 +48,8 @@ def displaySectHeader(sectionName):
 
 def main():
     print()
+    collectInputs()
     displayBanner()
     displaySectHeaders()
 
 main()
-
-# Summary Report
-# I couldn't figure out how to get the input inside the collectInputs() to be a global variables
-# so I did the next best solution I could think of. By making the global variable and then call
-# for it at the collectInputs(). I moved def main() to the bottom because it make more sense
-# to me that way. I know my main() didn't call the collectInputs(). However, when I tried
-# to call the collectInputs() inside of main, the output would display twice. So I opted to
-# not call for it in main but inside the displayBanner().

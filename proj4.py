@@ -3,28 +3,28 @@ import formulas
 BANNER_WIDTH = 50
 
 def main():
-    printBanner()
+    printBanner(1)
     dist = doDistancePractice()
     print("Distance =", dist)
     print()
-    printBanner()
+    printBanner(3)
     x, y = doMidpointPractice()
     print("Midpoint x = ", x)
     print("Midpoint y = ", y)
     print()
-    printBanner()
+    printBanner(0)
     dista = doRadiusPractice()
     print("Radius =", dista)
 
-def printBanner():
-    if doDistancePractice():
+def printBanner(x):
+    if x == 1:
         print("-" * BANNER_WIDTH)
         print("\tDISTANCE PRACTICE")
         print("-" * BANNER_WIDTH)
-    elif doMidpointPractice():
+    elif x == 3:
         print("-" * BANNER_WIDTH)
         print("\tMIDPOINT PRACTICE")
-        print("-" * BANNER_WIDTH)
+        print("-" * BANNER_WIDTH)       
     else:
         print("-" * BANNER_WIDTH)
         print("\tRADIUS PRACTICE")

@@ -2,9 +2,34 @@ import formulas
 
 BANNER_WIDTH = 50
 
-def printBanner():
-    pass
+def main():
+    printBanner()
+    dist = doDistancePractice()
+    print("Distance =", dist)
+    print()
+    printBanner()
+    x, y = doMidpointPractice()
+    print("Midpoint x = ", x)
+    print("Midpoint y = ", y)
+    print()
+    printBanner()
+    dista = doRadiusPractice()
+    print("Radius =", dista)
 
+def printBanner():
+    if doDistancePractice():
+        print("-" * BANNER_WIDTH)
+        print("\tDISTANCE PRACTICE")
+        print("-" * BANNER_WIDTH)
+    elif doMidpointPractice():
+        print("-" * BANNER_WIDTH)
+        print("\tMIDPOINT PRACTICE")
+        print("-" * BANNER_WIDTH)
+    else:
+        print("-" * BANNER_WIDTH)
+        print("\tRADIUS PRACTICE")
+        print("-" * BANNER_WIDTH)
+        
 def userInputDistance():
     x1 = float(input("Enter x1: "))
     y1 = float(input("Enter y1: "))
@@ -19,6 +44,13 @@ def userInputMidpoint():
     midY2 = float(input("Enter y2: "))
     return midX1, midY1, midX2, midY2
 
+def userInputRadius():
+    centerX = float(input("Enter center x: "))
+    centerY = float(input("Enter center y: "))
+    pointX = float(input("Enter point x: "))
+    pointY = float(input("Enter point y: "))
+    return centerX, centerY, pointX, pointY
+
 def doDistancePractice():
     inputX1, inputY1, inputX2, inputY2 = userInputDistance()
     caldistance = formulas.calcDistance(inputX1, inputY1, inputX2, inputY2)
@@ -31,12 +63,8 @@ def doMidpointPractice():
     return midPointX, midPointY
 
 def doRadiusPractice():
-    pass
-
-def main():
-    print("Distance =", doDistancePractice())
-    print()
-    print("Midpoint x = ", doMidpointPractice()[0])
-    doRadiusPractice()
+    cenX, cenY, ptX, ptY = userInputRadius()
+    radius = formulas.calcRadius(cenX, cenY, ptX, ptY)
+    return radius
 
 main()

@@ -1,27 +1,24 @@
+# Minh Tri Doan Vo
+# 10/25/2023
+# Calculation of Distance, Mid Point, and Radius from User Input
 import formulas
-
 BANNER_WIDTH = 50
 
 def main():
-    printBanner(1)
-    dist = doDistancePractice()
-    print("Distance =", dist)
+    doDistancePractice()
     print()
-    printBanner(3)
-    x, y = doMidpointPractice()
-    print("Midpoint x = ", x)
-    print("Midpoint y = ", y)
+    doMidpointPractice()
     print()
-    printBanner(0)
-    dista = doRadiusPractice()
-    print("Radius =", dista)
+    doRadiusPractice()
+    print()
+    print("That wraps up practice time. See you next time!")
 
 def printBanner(x):
     if x == 1:
         print("-" * BANNER_WIDTH)
         print("\tDISTANCE PRACTICE")
         print("-" * BANNER_WIDTH)
-    elif x == 3:
+    elif x == 2:
         print("-" * BANNER_WIDTH)
         print("\tMIDPOINT PRACTICE")
         print("-" * BANNER_WIDTH)       
@@ -52,19 +49,25 @@ def userInputRadius():
     return centerX, centerY, pointX, pointY
 
 def doDistancePractice():
+    printBanner(1)
     inputX1, inputY1, inputX2, inputY2 = userInputDistance()
     caldistance = formulas.calcDistance(inputX1, inputY1, inputX2, inputY2)
+    print("Distance =", format(caldistance, ".4f"))
     return caldistance
 
 def doMidpointPractice():
+    printBanner(2)
     midPx1, midPy1, midPx2, midPy2 = userInputMidpoint()
-    midPointX = formulas.calcMidPointX(midPx1, midPy1, midPx2, midPy2)
-    midPointY = formulas.calcMidPointY(midPx1, midPy1, midPx2, midPy2)
+    midPointX, midPointY = formulas.calcMidPoint(midPx1, midPy1, midPx2, midPy2)
+    print("Midpoint x = ", format(midPointX, ".4f"))
+    print("Midpoint y = ", format(midPointY, ".4f"))
     return midPointX, midPointY
 
 def doRadiusPractice():
+    printBanner(0)
     cenX, cenY, ptX, ptY = userInputRadius()
     radius = formulas.calcRadius(cenX, cenY, ptX, ptY)
+    print("Radius =", format(radius, ".4f"))
     return radius
 
 main()

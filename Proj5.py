@@ -32,7 +32,7 @@ def match(per1, per2):
         else:
             religion = 0.50
     else:
-        return religion
+        religion = rate(per1[4], per2[4])
 # Logic for political
     if per1[6] >= 9 or per2[6] >= 9:
         political = rate(per1[7], per2[7])

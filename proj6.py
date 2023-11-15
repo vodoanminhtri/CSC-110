@@ -15,15 +15,15 @@ def getInRangeInteger(min, max, validInt):
 def enterCo2ReadingBatch():
     # user input
     name = input("Enter Name: ")
-    name += getNonEmptyString(name)
+    name = getNonEmptyString(name)
     readingLocation = input("Enter Location: ")
-    readingLocation += getNonEmptyString(readingLocation)
+    readingLocation = getNonEmptyString(readingLocation)
     print()
     result = []
     # logic for the loop
     month = int(input("Enter month (or 0 to exit): "))
-    while month > 0:
-        counter = 1
+    counter = 0
+    while month != 0:
         month = getInRangeInteger(1, 12, month)
         day = int(input("Enter day: "))
         day = getInRangeInteger(1, 31, day)
@@ -34,23 +34,23 @@ def enterCo2ReadingBatch():
         counter += 1
         print()
         month = int(input("Enter month (or 0 to exit): "))  
-        result.append(co2Reading)  
+        result.append(co2Reading)   
     # calculation for min
     smallestValue = min(result)
     biggestValue = max(result)
-    average = (smallestValue + biggestValue)/2
+    average = sum(result)/counter
     return name, readingLocation, smallestValue, biggestValue, average, counter
 
 def main():
-    name, location, minLevel, maxLevel, averageLevel, count = enterCo2ReadingBatch()
-    print("-" * 30)
-    print("Recorder Name:", name)
-    print("Reading location:", location)
+    nameInput, locationInput, minLevel, maxLevel, averageLevel, count = enterCo2ReadingBatch()
+    print("-" * 50)
+    print("Recorder Name:\t\t", nameInput)
+    print("Reading location:\t", locationInput)
     print()
-    print("Number of readings:", count)
-    print("Minimum CO2 Level:", minLevel)
-    print("Maximum CO2 Level:", maxLevel)
-    print("Average CO2 Level:", averageLevel)
-    print("-" * 30)
+    print("Number of readings:", format(count, "7.0f"))
+    print("Minimum CO2 Level:", format(minLevel, "8.0f"))
+    print("Maximum CO2 Level:", format(maxLevel, "8.0f"))
+    print("Average CO2 Level:", format(averageLevel, "8.0f"))
+    print("-" * 50)
 
 main()

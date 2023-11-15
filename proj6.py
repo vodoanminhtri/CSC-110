@@ -4,8 +4,7 @@
 
 def getNonEmptyString(validString):
     while len(validString) == 0:
-        print("ERROR: Please enter Your Name")
-        validString = input("Enter Your Full Name: ")
+        validString = input("ERROR: Please enter valid data: ")
     return validString
 
 def getInRangeInteger(min, max, validInt):
@@ -16,30 +15,42 @@ def getInRangeInteger(min, max, validInt):
 def enterCo2ReadingBatch():
     # user input
     name = input("Enter Name: ")
-    getNonEmptyString(name)
+    name += getNonEmptyString(name)
     readingLocation = input("Enter Location: ")
-    getNonEmptyString(readingLocation)
+    readingLocation += getNonEmptyString(readingLocation)
     print()
+    result = []
     # logic for the loop
     month = int(input("Enter month (or 0 to exit): "))
     while month > 0:
         counter = 1
-        getInRangeInteger(1, 12, month)
+        month = getInRangeInteger(1, 12, month)
         day = int(input("Enter day: "))
-        getInRangeInteger(1, 31, day)
+        day = getInRangeInteger(1, 31, day)
         year = int(input("Enter year: "))
-        getInRangeInteger ( 2022, 2099, year)
+        year = getInRangeInteger ( 2022, 2099, year)
         co2Reading = int(input("Enter CO2 Reading: "))
-        getInRangeInteger(1, 10000, co2Reading)
+        co2Reading = getInRangeInteger(1, 10000, co2Reading)
         counter += 1
         print()
-        month = int(input("Enter month (or 0 to exit): "))
-    return name, readingLocation, month, day, year, co2Reading, counter
+        month = int(input("Enter month (or 0 to exit): "))  
+        result.append(co2Reading)  
+    # calculation for min
+    smallestValue = min(result)
+    biggestValue = max(result)
+    average = (smallestValue + biggestValue)/2
+    return name, readingLocation, smallestValue, biggestValue, average, counter
 
 def main():
-    data = []
-    dataInput = enterCo2ReadingBatch()
-    data += dataInput
-    print(data)
+    name, location, minLevel, maxLevel, averageLevel, count = enterCo2ReadingBatch()
+    print("-" * 30)
+    print("Recorder Name:", name)
+    print("Reading location:", location)
+    print()
+    print("Number of readings:", count)
+    print("Minimum CO2 Level:", minLevel)
+    print("Maximum CO2 Level:", maxLevel)
+    print("Average CO2 Level:", averageLevel)
+    print("-" * 30)
 
 main()

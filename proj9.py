@@ -1,7 +1,3 @@
-# Minh Tri Doan Vo
-# CSC 110
-# Project 9
-
 def readFile(textFile):
     originalFile = open(textFile, "r")
     textSet = set(originalFile.read().split())
@@ -9,13 +5,13 @@ def readFile(textFile):
     return textSet
 
 def findLongest(setOfWord):
-    longgest = ""
-    longgestLen = 0
+    longest = ""
+    longestLen = 0
     for word in setOfWord:
-        if len(word) > len(longgest):
-            longgest = word
-            longgestLen = len(longgest)
-    return longgest, longgestLen
+        if len(word) > len(longest):
+            longest = word
+            longestLen = len(longest)
+    return longest, longestLen
 
 def generateSortedList(setOfWord):
     setOfWord = list(setOfWord)
@@ -36,19 +32,35 @@ def writeWordFile(writeFile, listOfWords):
     writting.close()
 
 def generateLenFreqs(setOfWords, longestLen):
-    pass
+    setOfWords = list(setOfWords)
+    frequenciesList = [0] * (longestLen + 1)
+    for word in setOfWords:
+        wordLength = len(word)
+        frequenciesList[wordLength] += 1
+    return frequenciesList
 
 def main():
     file = readFile("GettysburgAddress.txt")
-    print(len(file))
-    long, longger = findLongest(file)
-    print(long, longger)
+    totalDistictWord = len(file)
+    longestWord, longestLen = findLongest(file)
     list = generateSortedList(file)
-    print(list)
     writeWordFile("GettysburgWords.txt", list)
-    frequencies = generateLenFreqs(file, longger)
-    print(frequencies)
-    
+    frequencies = generateLenFreqs(file, longestLen)
 
+    print("Number of distinct words:", format(totalDistictWord, "3d"))
+    print("Length of longest word:", format(longestLen, "5d"))
+    print("Longest word:", longestWord)
+    print()
+    print("Length = 1, Count =", format(frequencies[1], "4d"))
+    print("Length = 2, Count =", format(frequencies[2], "4d"))
+    print("Length = 3, Count =", format(frequencies[3], "4d"))
+    print("Length = 4, Count =", format(frequencies[4], "4d"))
+    print("Length = 5, Count =", format(frequencies[5], "4d"))
+    print("Length = 6, Count =", format(frequencies[6], "4d"))
+    print("Length = 7, Count =", format(frequencies[7], "4d"))
+    print("Length = 8, Count =", format(frequencies[8], "4d"))
+    print("Length = 9, Count =", format(frequencies[9], "4d"))
+    print("Length = 10, Count =", format(frequencies[10], "3d"))
+    print("Length = 11, Count =", format(frequencies[11], "3d"))
 
 main()
